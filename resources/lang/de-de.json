@@ -1,0 +1,13 @@
+{
+    "window": {
+        "title": "Void"
+    },
+    "buttons": {
+        "start": {
+            "create-proj": "Deez Project",
+            "clone-proj": "Nutz Project",
+            "open-proj": "Open Project",
+            "change-lang": "Sprache ändern"
+        }
+    }
+}

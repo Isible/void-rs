@@ -1,0 +1,13 @@
+{
+    "window": {
+        "title": "Void"
+    },
+    "buttons": {
+        "start": {
+            "create-proj": "Create Project",
+            "clone-proj": "Clone Project",
+            "open-proj": "Open Project",
+            "change-lang": "Change Language"
+        }
+    }
+}
