@@ -65,6 +65,9 @@ impl Application for VoidApp<'_> {
             button(self.translator.load("buttons.start.open-proj"))
                 .padding([10, 20])
                 .on_press(Message::OpenProj),
+            button("deez")
+                .padding([50, 20])
+                .on_press(Message::OpenProj),
         ]
         .spacing(10)
         .align_items(Alignment::Center);
