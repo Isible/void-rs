@@ -2,9 +2,14 @@ use iced::executor;
 use iced::widget::{button, column, container};
 use iced::window;
 use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
+use logger::Logger;
 use translations::Translator;
 
 mod translations;
+mod logger;
+
+pub const NAME: &str = "Void";
+pub const LOGGER: Logger = Logger::new(NAME);
 
 pub fn main() -> iced::Result {
     VoidApp::run(Settings::default())
@@ -20,6 +25,7 @@ enum Message {
     Confirm,
     Exit,
     ChangeLang,
+    CreateProj,
 }
 
 impl Application for VoidApp<'_> {
@@ -55,6 +61,10 @@ impl Application for VoidApp<'_> {
                     "en-us" => "de-de",
                     _ => panic!()
                 });
+                Command::none()
+            },
+            Message::CreateProj => {
+                println!("Nuts");
                 Command::none()
             },
         }

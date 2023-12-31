@@ -4,9 +4,9 @@
     },
     "buttons": {
         "start": {
-            "create-proj": "Deez Project",
-            "clone-proj": "Nutz Project",
-            "open-proj": "Open Project",
+            "create-proj": "Projekt erstellen",
+            "clone-proj": "Projekt klonen",
+            "open-proj": "Projekt öffnen",
             "change-lang": "Sprache ändern"
         }
     }
