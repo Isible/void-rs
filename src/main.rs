@@ -1,4 +1,6 @@
-use iced::executor;
+use iced::theme::Button;
+use iced::widget::button::StyleSheet;
+use iced::{executor, Color};
 use iced::widget::{button, column, container};
 use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
 use logger::Logger;
@@ -62,7 +64,6 @@ impl Application for VoidApp<'_> {
                 .on_press(Message::CloneProj),
             button(self.translator.load("buttons.start.open-proj"))
                 .padding([10, 20])
-                .style(Style)
                 .on_press(Message::OpenProj),
         ]
         .spacing(10)
@@ -77,13 +78,23 @@ impl Application for VoidApp<'_> {
             .into()
     }
 }
-
+/*
+#[derive(Default)]
 struct ButtonStyle;
 
 impl button::StyleSheet for ButtonStyle {
-    type Style;
+    type Style = ;
 
     fn active(&self, style: &Self::Style) -> button::Appearance {
-        todo!()
+        button::Appearance {
+            background: Some(iced::Background::Color(Color::from_rgb8(0x4c, 0xaf, 0x50))), // Set the background color here
+            text_color: iced::Color::WHITE,
+            ..button::Appearance::default()
+        }
+    }
+
+    fn hovered(&self, style: &Self::Style) -> button::Appearance {
+        self.active(style)
     }
 }
+*/
