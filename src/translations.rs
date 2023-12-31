@@ -30,10 +30,13 @@ impl<'a> Translator<'a> {
         }
 
         // Parse JSON data into a serde_json::Value
-        let parsed_data: Result<Value, serde_json::Error> = serde_json::from_str(&file_content);
+        let parsed_data: Value = match serde_json::from_str(&file_content) {
+            Ok(data) => data,
+            Err(err) => panic!("Failed to parse data for lang file, {}", err),
+        };
 
         Self {
-            json: parsed_data.unwrap(),
+            json: parsed_data,
             lang,
         }
     }

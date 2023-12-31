@@ -1,12 +1,11 @@
 use iced::executor;
 use iced::widget::{button, column, container};
-use iced::window;
 use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
 use logger::Logger;
 use translations::Translator;
 
-mod translations;
 mod logger;
+mod translations;
 
 pub const NAME: &str = "Void";
 pub const LOGGER: Logger = Logger::new(NAME);
@@ -16,16 +15,14 @@ pub fn main() -> iced::Result {
 }
 
 struct VoidApp<'a> {
-    show_confirm: bool,
     translator: Translator<'a>,
 }
 
 #[derive(Debug, Clone, Copy)]
 enum Message {
-    Confirm,
-    Exit,
-    ChangeLang,
     CreateProj,
+    CloneProj,
+    OpenProj,
 }
 
 impl Application for VoidApp<'_> {
@@ -37,7 +34,6 @@ impl Application for VoidApp<'_> {
     fn new(_flags: ()) -> (Self, Command<Message>) {
         (
             Self {
-                show_confirm: false,
                 translator: Translator::new(translations::DEFAULT_LANGUAGE),
             },
             Command::none(),
@@ -50,45 +46,25 @@ impl Application for VoidApp<'_> {
 
     fn update(&mut self, message: Message) -> Command<Message> {
         match message {
-            Message::Confirm => window::close(),
-            Message::Exit => {
-                self.show_confirm = true;
-                Command::none()
-            }
-            Message::ChangeLang => {
-                self.translator.change_language(match self.translator.lang() {
-                    "de-de" => "en-us",
-                    "en-us" => "de-de",
-                    _ => panic!()
-                });
-                Command::none()
-            },
-            Message::CreateProj => {
-                println!("Nuts");
-                Command::none()
-            },
+            Message::CreateProj => todo!(),
+            Message::CloneProj => todo!(),
+            Message::OpenProj => todo!(),
         }
     }
 
     fn view(&self) -> Element<Message> {
-        let content = if self.show_confirm {
-            column![
-                "Are you sure you want to exit?",
-                button(self.translator.load("buttons.start.clone-proj"))
-                    .padding([10, 20])
-                    .on_press(Message::Confirm),
-            ]
-        } else {
-            column![
-                "Click the button to exit",
-                button(self.translator.load("buttons.start.create-proj"))
-                    .padding([10, 20])
-                    .on_press(Message::Exit),
-                button(self.translator.load("buttons.start.change-lang"))
-                    .padding([10, 20])
-                    .on_press(Message::ChangeLang),
-            ]
-        }
+        let content = column![
+            button(self.translator.load("buttons.start.create-proj"))
+                .padding([10, 20])
+                .on_press(Message::CreateProj),
+            button(self.translator.load("buttons.start.clone-proj"))
+                .padding([10, 20])
+                .on_press(Message::CloneProj),
+            button(self.translator.load("buttons.start.open-proj"))
+                .padding([10, 20])
+                .style(Style)
+                .on_press(Message::OpenProj),
+        ]
         .spacing(10)
         .align_items(Alignment::Center);
 
@@ -99,5 +75,15 @@ impl Application for VoidApp<'_> {
             .center_x()
             .center_y()
             .into()
+    }
+}
+
+struct ButtonStyle;
+
+impl button::StyleSheet for ButtonStyle {
+    type Style;
+
+    fn active(&self, style: &Self::Style) -> button::Appearance {
+        todo!()
     }
 }
